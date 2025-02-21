@@ -1,23 +1,31 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db_name = "nevasca_db";
-    private $username = "root";
-    private $password = "";
-    public $conn;
+    private $conn;
 
     public function getConnection() {
         $this->conn = null;
 
         try {
-            $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
-                $this->username,
-                $this->password
-            );
+            // Obtém a URL do banco de dados a partir das variáveis de ambiente
+            $db_url = getenv("DATABASE_URL");
+            if (!$db_url) {
+                throw new Exception("Erro: variável DATABASE_URL não encontrada.");
+            }
+
+            // Faz o parsing da URL do PostgreSQL
+            $components = parse_url($db_url);
+            $host = $components["host"];
+            $port = $components["port"];
+            $user = $components["user"];
+            $password = $components["pass"];
+            $dbname = ltrim($components["path"], "/");
+
+            // Cria a conexão com PostgreSQL
+            $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+            $this->conn = new PDO($dsn, $user, $password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->exec("set names utf8mb4");
-        } catch(PDOException $e) {
+            $this->conn->exec("SET NAMES 'utf8'");
+        } catch (Exception $e) {
             echo "Erro na conexão: " . $e->getMessage();
         }
 
