@@ -1,0 +1,525 @@
+/* Importações e configuração base */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+:root {
+    --primary: #8a2be2;
+    --primary-light: #9d4ced;
+    --primary-dark: #6a1cb2;
+    --secondary: #ffd700;
+    --secondary-light: #ffe44d;
+    --secondary-dark: #ccac00;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --success: #28a745;
+    --success-light: #34c759;
+    --danger: #dc3545;
+    --danger-light: #ff4757;
+    --warning: #ffc107;
+    --warning-light: #ffd54f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e5ff 0%, #fff 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container principal */
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+}
+
+/* Título principal */
+.container h1 {
+    color: var(--primary-dark);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 3.5rem;
+    font-weight: 600;
+}
+
+.container h1::before {
+    content: '\f080';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    font-size: 2.2rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Filtros e Ações */
+.filtros {
+    background: var(--white);
+    padding: 1.8rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(138, 43, 226, 0.08);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.periodo {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex: 1;
+}
+
+.periodo label {
+    color: var(--primary-dark);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.periodo input[type="date"] {
+    padding: 1rem 1.2rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-dark);
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.periodo input[type="date"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+    outline: none;
+}
+
+.filtros button {
+    background: linear-gradient(45deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+.filtros button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+}
+
+.acoes-exportacao {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.acoes-exportacao button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.acoes-exportacao button:first-child {
+    background: var(--success);
+    color: var(--white);
+}
+
+.acoes-exportacao button:last-child {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Grid de Relatórios */
+.grid-relatorios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* Cards de Relatório */
+.card-relatorio {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(138, 43, 226, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card-relatorio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(138, 43, 226, 0.12);
+}
+
+.card-relatorio h2 {
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-relatorio h3 {
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+    margin: 1.5rem 0 1rem;
+    font-weight: 500;
+}
+
+/* Informações e Resumos */
+.info-item {
+    background: var(--gray-50);
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: var(--gray-100);
+}
+
+.info-item span:first-child {
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.info-item span:last-child {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Tabelas */
+.tabela-produtos,
+.tabela-estoque,
+.tabela-despesas,
+.tabela-pedidos {
+    margin-top: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    background: var(--gray-50);
+    padding: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+td {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--primary-dark);
+}
+
+/* Gráficos */
+.grafico-container {
+    margin-top: 2rem;
+    height: 300px;
+    position: relative;
+}
+
+/* Balanço */
+.balanço .info-item.receitas {
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.balanço .info-item.despesas {
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.balanço .info-item.lucro {
+    background: rgba(138, 43, 226, 0.1);
+}
+
+/* Status de Pedidos */
+.status-pendente {
+    color: var(--warning);
+    font-weight: 500;
+}
+
+.status-vencido {
+    color: var(--danger);
+    font-weight: 500;
+}
+
+.status-pago {
+    color: var(--success);
+    font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .grid-relatorios {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 1rem;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 1rem;
+        width: 100%;
+    }
+    
+    .filtros {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        padding: 1.5rem;
+        margin: 0 0 1rem 0;
+    }
+    
+    .periodo {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.8rem;
+    }
+
+    .periodo input[type="date"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .container {
+        width: 100vw;
+        max-width: 100%;
+        margin: 0;
+        padding: 1rem;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        position: relative;
+        left: 0;
+    }
+
+    .grid-relatorios {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        grid-template-columns: 1fr;
+        box-sizing: border-box;
+    }
+
+    .container h1 {
+        font-size: 1.8rem;
+        padding-left: 2.8rem;
+        margin: 0 0 1.5rem 0;
+    }
+
+    /* Ajustes nas tabelas */
+    .table-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .tabela-produtos,
+    .tabela-estoque,
+    .tabela-despesas,
+    .tabela-pedidos {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste nos cards */
+    .card-relatorio {
+        width: 100%;
+        margin: 0 0 1rem 0;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste nos filtros */
+    .filtros {
+        width: 100%;
+        margin: 0 0 1rem 0;
+        padding: 1rem;
+        box-sizing: border-box;
+        flex-direction: column;
+    }
+
+    .periodo {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .periodo input[type="date"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste nas informações */
+    .info-item {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 0.8rem;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste nos botões */
+    .acoes-exportacao {
+        width: 100%;
+        margin: 1rem 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .acoes-exportacao button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0.5rem;
+        left: 0;
+        right: 0;
+    }
+
+    .card-relatorio,
+    .filtros,
+    .info-item {
+        padding: 0.8rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste nas tabelas */
+    th, td {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 360px) {
+    .container {
+        padding: 0.3rem;
+    }
+
+    .card-relatorio {
+        padding: 0.8rem;
+    }
+
+    .info-item {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .filtros {
+        padding: 0.8rem;
+    }
+}
+
+/* Melhorias na rolagem das tabelas */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-relatorio {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.formas-pagamento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.forma-item {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.forma-item .forma-nome {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.forma-item .forma-valor {
+    color: var(--success);
+}
+
+.forma-item .forma-quantidade {
+    color: var(--gray-600);
+    font-size: 0.9em;
+}

@@ -1,0 +1,365 @@
+/* Importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* Variáveis e reset */
+:root {
+    --primary: #8a2be2;
+    --primary-light: #9d4ced;
+    --primary-dark: #6a1cb2;
+    --secondary: #ffd700;
+    --secondary-light: #ffe44d;
+    --secondary-dark: #ccac00;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e5ff 0%, #fff 100%);
+    min-height: 100vh;
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.config-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Cabeçalho */
+.config-container h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.config-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+/* Card principal */
+.card-config {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(138, 43, 226, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card-config:hover {
+    transform: translateY(-5px);
+}
+
+.card-config h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-config h2::before {
+    content: '\f013';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--primary-light);
+}
+
+/* Formulário */
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--primary-dark);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--gray-50);
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.1);
+    background: var(--white);
+}
+
+/* Campo de senha */
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--primary);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password:hover {
+    color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.toggle-password::before {
+    content: '\f06e';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Botão de salvar */
+.btn-salvar {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+.btn-salvar::before {
+    content: '\f0c7';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.btn-salvar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+}
+
+/* Mensagens de feedback */
+.mensagem {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mensagem.sucesso {
+    background: linear-gradient(45deg, var(--success), #34c759);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.mensagem.sucesso::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.mensagem.erro {
+    background: linear-gradient(45deg, var(--danger), #ff4757);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.mensagem.erro::before {
+    content: '\f071';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Card de informações */
+.card-info {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(138, 43, 226, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+.card-info h3 {
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.card-info h3::before {
+    content: '\f05a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary-light);
+}
+
+.card-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card-info li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #666;
+    line-height: 1.5;
+}
+
+.card-info li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary-light);
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    .config-container h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .config-container h1::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+    }
+
+    .card-config {
+        padding: 1.5rem;
+    }
+
+    .card-config h2 {
+        font-size: 1.5rem;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .form-group input {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-salvar {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Novo breakpoint para telas muito pequenas */
+@media (max-width: 480px) {
+    .config-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .card-config,
+    .card-info {
+        padding: 1.2rem;
+    }
+
+    .card-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .card-info li {
+        font-size: 0.9rem;
+        padding-left: 1.2rem;
+    }
+
+    .mensagem {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}

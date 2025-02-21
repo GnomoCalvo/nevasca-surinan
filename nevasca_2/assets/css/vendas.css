@@ -1,0 +1,1046 @@
+/* Importações e configuração base */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+:root {
+    --primary: #8a2be2;
+    --primary-light: #9d4ced;
+    --primary-dark: #6a1cb2;
+    --secondary: #ffd700;
+    --secondary-light: #ffe44d;
+    --secondary-dark: #ccac00;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --success: #28a745;
+    --success-light: #34c759;
+    --danger: #dc3545;
+    --danger-light: #ff4757;
+    --warning: #ffc107;
+    --warning-light: #ffd54f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e5ff 0%, #fff 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container principal */
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+/* Grid de vendas */
+.grid-vendas {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Painel de Venda */
+.painel-venda {
+    position: sticky;
+    top: 90px;
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(138, 43, 226, 0.1);
+}
+
+.painel-venda::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.painel-venda h2 {
+    color: var(--primary-dark);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.painel-venda h2::before {
+    content: '\f07a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Seleção de Produto */
+.selecao-produto {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--primary-dark);
+    font-size: 0.95rem;
+}
+
+.form-control {
+    padding: 1rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.1);
+    outline: none;
+}
+
+.self-service-config {
+    grid-column: 1 / -1;
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+}
+
+/* Lista de Itens */
+.lista-itens {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.lista-itens table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lista-itens th {
+    background: var(--gray-50);
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-align: left;
+    padding: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.lista-itens td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--primary-dark);
+}
+
+/* Botões e Ações */
+.btn-adicionar {
+    padding: 1rem 1.5rem;
+    background: var(--success);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-adicionar:hover {
+    background: var(--success-light);
+    transform: translateY(-2px);
+}
+
+.btn-remover {
+    padding: 0.5rem 1rem;
+    background: var(--danger);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-remover:hover {
+    background: var(--danger-light);
+}
+
+/* Total e Forma de Pagamento */
+.total-venda {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
+}
+
+.forma-pagamento {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin: 2rem 0;
+}
+
+.forma-pagamento h3 {
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.opcoes-pagamento {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.opcao-pagamento {
+    display: none;
+}
+
+.opcao-pagamento + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: var(--primary-dark);
+    text-align: center;
+}
+
+.opcao-pagamento:checked + label {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+/* Botões de Ação */
+.acoes-venda {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-cancelar {
+    background: var(--danger);
+    color: var(--white);
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-finalizar {
+    background: linear-gradient(45deg, var(--success), var(--success-light));
+    color: var(--white);
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-finalizar:disabled {
+    background: var(--gray-200);
+    cursor: not-allowed;
+}
+
+/* Modal de Confirmação */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-content h3 {
+    color: var(--success);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.resumo-venda {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.resumo-venda p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+/* Painel de Resumo */
+.painel-resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.card-resumo {
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(138, 43, 226, 0.1);
+}
+
+.card-resumo h3 {
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.card-resumo h3::before {
+    content: '\f201';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info-item {
+    background: var(--white);
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-item span:first-child {
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.info-item span:last-child {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Histórico de Vendas */
+.historico-vendas {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(138, 43, 226, 0.1);
+}
+
+.historico-vendas h3 {
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.historico-vendas h3::before {
+    content: '\f1da';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.filtros-historico {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.periodo {
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.periodo label {
+    color: var(--primary-dark);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.periodo input[type="date"] {
+    padding: 0.8rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.filtros-historico button {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.venda-item {
+    background: var(--white);
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.venda-header {
+    padding: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    align-items: center;
+    background: var(--gray-50);
+}
+
+.venda-header span {
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.venda-header button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.venda-header button:not(.btn-cancelar-venda) {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-cancelar-venda {
+    background: var(--danger);
+    color: var(--white);
+}
+
+.venda-detalhes {
+    padding: 1.2rem;
+    display: none;
+}
+
+.venda-detalhes table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.venda-detalhes th {
+    background: var(--gray-50);
+    padding: 1rem;
+    text-align: left;
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.venda-detalhes td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .grid-vendas {
+        grid-template-columns: 1fr;
+    }
+    
+    .painel-venda {
+        position: relative;
+        top: 0;
+    }
+
+    .container {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 992px) {
+    .selecao-produto {
+        grid-template-columns: 1fr;
+    }
+    
+    .periodo {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    
+    .painel-venda,
+    .historico-vendas {
+        padding: 1.5rem;
+    }
+
+    .painel-venda h2,
+    .historico-vendas h3 {
+        font-size: 1.5rem;
+        padding-left: 2.2rem;
+    }
+
+    .painel-venda h2::before,
+    .historico-vendas h3::before {
+        font-size: 1.5rem;
+    }
+    
+    .opcoes-pagamento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .acoes-venda {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    /* Ajustes na tabela de itens */
+    .lista-itens {
+        margin: 0 -1rem;
+        width: calc(100% + 2rem);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .lista-itens table {
+        min-width: 600px;
+    }
+
+    .lista-itens th,
+    .lista-itens td {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    /* Modal ajustes */
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+        padding: 1.5rem;
+        max-height: 85vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin: 0;
+    }
+    
+    .painel-venda,
+    .historico-vendas {
+        padding: 1.2rem;
+        border-radius: 15px;
+    }
+    
+    .opcoes-pagamento {
+        grid-template-columns: 1fr;
+    }
+    
+    .periodo input[type="date"] {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .btn-adicionar,
+    .btn-finalizar,
+    .btn-cancelar {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .total-venda {
+        padding: 1.2rem;
+        font-size: 1.3rem;
+    }
+
+    .venda-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .venda-header button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Suporte a telas muito pequenas */
+@media (max-width: 360px) {
+    .selecao-produto,
+    .forma-pagamento,
+    .filtros-historico {
+        padding: 1rem;
+    }
+
+    .painel-venda h2,
+    .historico-vendas h3 {
+        font-size: 1.3rem;
+        padding-left: 2rem;
+    }
+
+    .total-venda {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+
+    .lista-itens th,
+    .lista-itens td {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+}
+
+/* Suporte a telas muito grandes */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .grid-vendas {
+        gap: 3rem;
+    }
+}
+
+/* Melhorias na rolagem das tabelas */
+.lista-itens {
+    position: relative;
+}
+
+/* Indicador de scroll horizontal */
+.lista-itens::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.05));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+    .lista-itens::after {
+        opacity: 1;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.venda-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pagamentos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pagamento-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+}
+
+.pagamento-item.hidden {
+    display: none;
+}
+
+.pagamento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.pagamento-header h4 {
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.btn-remover-pagamento {
+    background: var(--danger);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.btn-remover-pagamento:hover {
+    background: var(--danger-light);
+    transform: scale(1.1);
+}
+
+.valor-pagamento {
+    margin-top: 1rem;
+}
+
+.valor-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 1rem;
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.valor-input {
+    padding: 0.8rem 1rem 0.8rem 3rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.valor-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+    outline: none;
+}
+
+.btn-adicionar-pagamento {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gray-100);
+    border: 2px dashed var(--primary);
+    border-radius: 12px;
+    color: var(--primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.btn-adicionar-pagamento:hover {
+    background: var(--primary-light);
+    border-style: solid;
+    color: var(--white);
+}
+
+.resumo-pagamentos {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.valor-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.valor-item:last-child {
+    margin-bottom: 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pagamento-item {
+        padding: 1rem;
+    }
+
+    .valor-input {
+        font-size: 0.9rem;
+    }
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+}
+
+/* Remover qualquer estilo que possa estar interferindo */
+.radio-option input[type="radio"]:not(:checked),
+.radio-option input[type="radio"]:checked {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.radio-option .radio-label {
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+/* Estilo para opção selecionada */
+.radio-option input[type="radio"]:checked + .radio-label {
+    color: var(--primary);
+}
+
+.radio-option input[type="radio"]:checked {
+    accent-color: var(--primary);
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+    border-color: var(--primary);
+    background-color: var(--gray-50);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        margin: 1rem;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;  /* Previne rolagem horizontal */
+    }
+    
+    /* Ajuste na lista de itens */
+    .lista-itens {
+        width: 100%;
+        margin: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .lista-itens table {
+        min-width: 100%;  /* Alterado de 600px fixo para 100% */
+        width: 100%;
+    }
+
+    /* Ajuste no grid de vendas */
+    .grid-vendas {
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Ajuste nos cards e painéis */
+    .painel-venda,
+    .painel-resumo,
+    .card-resumo,
+    .historico-vendas {
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    /* Ajuste na seleção de produto */
+    .selecao-produto {
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+    /* Ajuste nos inputs e selects */
+    .form-control,
+    .valor-input,
+    select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Ajuste na tabela para telas muito pequenas */
+    .lista-itens th,
+    .lista-itens td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* Ajuste no período do histórico */
+    .periodo {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .periodo input[type="date"] {
+        width: 100%;
+    }
+}

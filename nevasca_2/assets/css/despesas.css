@@ -1,0 +1,584 @@
+/* Importações e configuração base */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+:root {
+    --primary: #8a2be2;
+    --primary-light: #9d4ced;
+    --primary-dark: #6a1cb2;
+    --secondary: #ffd700;
+    --secondary-light: #ffe44d;
+    --secondary-dark: #ccac00;
+    --white: #ffffff;
+    --gray-50: #fafafa;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --success: #28a745;
+    --success-light: #34c759;
+    --danger: #dc3545;
+    --danger-light: #ff4757;
+    --warning: #ffc107;
+    --warning-light: #ffd54f;
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e5ff 0%, #fff 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(138, 43, 226, 0.1);
+}
+
+/* Cabeçalho */
+.container h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.container h1::before {
+    content: '\f53d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    font-size: 2.2rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Seção de filtros */
+.filtros {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(138, 43, 226, 0.08);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.filtros::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
+.periodo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.periodo label {
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Inputs e Selects */
+.filtros input[type="date"],
+.filtros select,
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--white);
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.filtros input[type="date"]:focus,
+.filtros select:focus,
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+    outline: none;
+}
+
+/* Botões */
+.btn-adicionar,
+.btn-salvar,
+button[type="submit"] {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+}
+
+.btn-adicionar:hover,
+.btn-salvar:hover,
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+}
+
+.btn-adicionar:first-of-type::before {
+    content: '\f07a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.btn-adicionar:last-of-type::before {
+    content: '\f155';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* Lista de gastos */
+.lista-gastos {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gasto-item {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gasto-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+.gasto-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.gasto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Status e badges */
+.gasto-tipo {
+    background: linear-gradient(45deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.status-pendente {
+    background: linear-gradient(45deg, var(--warning), var(--warning-light));
+    color: #000;
+}
+
+.status-pago {
+    background: linear-gradient(45deg, var(--success), var(--success-light));
+    color: var(--white);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin: 2rem;
+}
+
+/* Estilos específicos para o modal de pedido */
+#modalPedido .modal-content {
+    max-width: 900px;
+}
+
+.modal-content h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    padding-right: 2rem;
+}
+
+/* Itens do pedido */
+.itens-pedido {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+}
+
+.itens-pedido h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.item-pedido {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.item-pedido select,
+.item-pedido input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.item-pedido .subtotal {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+/* Botão de adicionar item */
+.itens-pedido > button {
+    background: var(--gray-100);
+    color: var(--primary);
+    padding: 0.8rem 1.5rem;
+    border: 2px dashed var(--primary-light);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.itens-pedido > button:hover {
+    background: var(--primary-light);
+    color: var(--white);
+    border-style: solid;
+}
+
+/* Total do pedido */
+.total-pedido {
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+    color: var(--white);
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Botão de fechar */
+.close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 32px;
+    height: 32px;
+    background: var(--gray-100);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+}
+
+.close:hover {
+    background: var(--primary-light);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+/* Animações */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+/* Loading state */
+.loading {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right, var(--gray-100) 4%, var(--gray-200) 25%, var(--gray-100) 36%);
+    background-size: 1000px 100%;
+    border-radius: 10px;
+    min-height: 100px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 15px;
+    }
+
+    .container h1 {
+        font-size: 2rem;
+        padding-left: 2.5rem;
+    }
+
+    .container h1::before {
+        font-size: 1.8rem;
+    }
+
+    .filtros {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.2rem;
+        gap: 1rem;
+    }
+
+    .periodo {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    .periodo label {
+        width: 100%;
+    }
+
+    .filtros input[type="date"],
+    .filtros select,
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .btn-adicionar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .gasto-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .item-pedido {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        position: relative;
+        padding-bottom: 2.5rem;
+    }
+
+    .item-pedido .subtotal {
+        position: absolute;
+        bottom: 0.8rem;
+        right: 1rem;
+    }
+
+    .total-pedido {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem;
+        max-height: 85vh;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5rem;
+        padding-right: 2.5rem;
+    }
+}
+
+/* Novo breakpoint para telas muito pequenas */
+@media (max-width: 480px) {
+    .container h1 {
+        font-size: 1.8rem;
+        padding-left: 2rem;
+    }
+
+    .container h1::before {
+        font-size: 1.6rem;
+    }
+
+    .gasto-item {
+        padding: 1.2rem;
+    }
+
+    .gasto-tipo,
+    .status-badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .modal-content {
+        padding: 1.2rem;
+    }
+
+    .itens-pedido {
+        padding: 1rem;
+    }
+
+    .item-pedido {
+        padding: 0.8rem;
+        padding-bottom: 2.2rem;
+    }
+
+    .total-pedido {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .close {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--primary-light));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Scrollbar personalizada para o modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--primary-light));
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
